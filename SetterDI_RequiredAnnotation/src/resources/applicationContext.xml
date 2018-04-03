@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:util="http://www.springframework.org/schema/util"   
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+               http://www.springframework.org/schema/util
+               http://www.springframework.org/schema/util/spring-util-3.0.xsd">  
+  
+  <!-- Activating Required Annotation -->
+  <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+  
+  	<!-- ==========================  PRIMITIVES SETTER DI=============================== -->
+	<bean id="studentbean" class="beans.Student">
+		<property name="rollNo" value="1"/> <!--   primitive setter DI-->
+		<property name="name" value="Kishan"/> <!--   primitive setter DI-->
+		<property name="rollNosArray"><!--   primitive array setter DI-->
+			<list>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
+				<value>5</value>				
+			</list>
+		</property>
+		<property name="rollNosList"><!--   primitive List setter DI-->
+			<list>
+				<value>6</value>
+				<value>7</value>
+				<value>8</value>
+				<value>9</value>				
+			</list>
+		</property>
+		<property name="books1"><!--   primitive Set setter DI-->
+			<set>
+				<value>Java reference</value>
+				<value>Spring reference</value>
+				<value>Mongo db reference</value>
+				<value>AJS reference</value>				
+			</set>
+		</property>
+		<property name="studentStandardMap"><!--   primitive Map setter DI-->
+			<map>
+				<entry key="Kishan" value="std 10"/>
+				<entry key="Manoj" value="std 12"/>
+				<entry key="Vivek" value="std 11"/>
+				<entry key="Smit" value="std 9"/>							
+			</map>
+		</property>
+		<property name="rollNosVector"><!--   primitive Vector setter DI..other collections with util namespace-->
+			<util:list list-class="java.util.Vector">
+				<value>6</value>
+				<value>7</value>
+				<value>8</value>
+				<value>9</value>				
+			</util:list>
+		</property>
+		<property name="books1TreeSet"><!--   primitive TreeSet setter DI..other collections with util namespace-->
+			<util:set set-class="java.util.TreeSet">
+				<value>Java reference Treeset</value>
+				<value>Spring reference Treeset</value>
+				<value>Mongo db reference Treeset</value>
+				<value>AJS reference Treeset</value>				
+			</util:set>
+		</property>
+		<property name="studentStandardHashTable"><!--   primitive HashTable setter DI..other collections with util namespace-->
+			<util:map map-class="java.util.Hashtable">
+				<entry key="Kishan" value="std 10 HashTable"/>
+				<entry key="Manoj" value="std 12 HashTable"/>
+				<entry key="Vivek" value="std 11 HashTable"/>
+				<entry key="Smit" value="std 9 HashTable"/>				
+			</util:map>
+		</property>
+		
+	
+	<!-- ==========================  SECONDARY TYPES(OBJECTS) SETTER DI=============================== -->
+		<property name="address" ref="address1"/> <!-- Secondary type(Object) DI  -->
+		<property name="addresses"> <!-- Array DI containing secondary type  -->
+			<list>
+			<ref bean="address1"/>
+			<ref bean="address2"/>
+			<ref bean="address3"/>			
+			</list>
+		</property>
+		
+		<property name="addressList"> <!-- list DI containing secondary type -->
+			<list>
+			<ref bean="address1"/>
+			<ref bean="address2"/>
+			<ref bean="address3"/>			
+			</list>
+		</property>
+		
+		<property name="addressSet"><!-- set DI containing secondary type -->
+			<set>
+			<ref bean="address1"/>
+			<ref bean="address2"/>
+			<ref bean="address3"/>			
+			</set>
+		</property>
+		
+		<property name="studentAddressMap"> <!-- map DI containing secondary type -->
+			<map>
+			<entry key="Kishan" value-ref="address1"/>
+			<entry key="Manoj" value-ref="address2"/>
+			<entry key="Vivek" value-ref="address3"/>
+			</map>
+		</property>
+		
+		<property name="property"> <!-- property DI using props -->
+			<props>
+				<prop key="driver">oracle.jdbc.OracleDriver</prop>
+				<prop key="url">jdbc:oracle:thin:@localhost:1521:xe</prop>
+				<prop key="username">system</prop>
+				<prop key="password">password</prop>	
+			</props>
+		</property>	
+		
+		<property name="propertyFile"> <!-- Properties file DI -->
+			<util:properties location="classpath:resources/propertyFile.properties"/>
+		</property>
+	</bean>
+	
+	<bean id="address1" class="beans.Address">
+		<!-- <property name="blockNo" value="1"/> -->
+		<property name="buildingName" value="A"/>
+	</bean>
+	<bean id="address2" class="beans.Address">
+	<property name="blockNo" value="2"/>
+		<property name="buildingName" value="B"/>
+	</bean>
+	<bean id="address3" class="beans.Address">
+	<property name="blockNo" value="3"/>
+		<property name="buildingName" value="C"/>
+	</bean>
+</beans>  
