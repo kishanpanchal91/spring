@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:util="http://www.springframework.org/schema/util"   
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+               http://www.springframework.org/schema/util
+               http://www.springframework.org/schema/util/spring-util-3.0.xsd">  
+  
+  	<!-- ==========================  Constructor DI=============================== -->
+	<bean id="studentbean" class="beans.Student">
+				<constructor-arg  value="10"/>
+				<constructor-arg  value="Kishan"/>
+				<constructor-arg>
+					<list>
+						<value>10</value>
+						<value>20</value>
+						<value>30</value>
+					</list>
+				</constructor-arg>
+				<constructor-arg>
+				<list>
+						<value>40</value>
+						<value>50</value>
+						<value>60</value>
+					</list>
+				</constructor-arg>
+				<constructor-arg>
+					<set>
+						<value>70</value>
+						<value>80</value>
+						<value>90</value>
+					</set>
+				</constructor-arg>
+				<constructor-arg>
+					<map>
+						<entry key="Kishan" value="Std 10"></entry>
+						<entry key="Smit" value="Std 9"></entry>
+						<entry key="Vivek" value="Std 11"></entry>
+					</map>
+				</constructor-arg>
+				<constructor-arg>
+					<util:list list-class="java.util.Vector">
+						<value>70</value>
+						<value>80</value>
+						<value>90</value>
+					</util:list>
+				</constructor-arg>
+				<constructor-arg>
+					<util:set set-class="java.util.TreeSet">
+						<value>70</value>
+						<value>80</value>
+						<value>90</value>
+					</util:set>
+				</constructor-arg>
+				<constructor-arg>
+					<util:map map-class="java.util.Hashtable">
+						<entry key="Kishan" value="Std 10 Hashtable"></entry>
+						<entry key="Smit" value="Std 9 Hashtable"></entry>
+						<entry key="Vivek" value="Std 11 Hashtable"></entry>
+					</util:map>
+				</constructor-arg>
+				
+				<constructor-arg ref="address1"/>
+				<constructor-arg>
+				<list>
+						<ref bean="address1"></ref>
+						<ref bean="address2"></ref>
+						<ref bean="address3"></ref>
+					</list>
+				</constructor-arg>
+				<constructor-arg>
+				<list>
+						<ref bean="address1"></ref>
+						<ref bean="address2"></ref>
+						<ref bean="address3"></ref>
+					</list>
+				</constructor-arg>
+				<constructor-arg>
+				<set>
+						<ref bean="address1"></ref>
+						<ref bean="address2"></ref>
+						<ref bean="address3"></ref>
+					</set>
+				</constructor-arg>
+				<constructor-arg>
+					<map>
+						<entry key="Kishan" value-ref="address1"></entry>
+						<entry key="Smit" value-ref="address2"></entry>
+						<entry key="Vivek" value-ref="address3"></entry>
+					</map>
+				</constructor-arg>
+				<constructor-arg>
+					<props>
+						<prop key="driver">oracle.jdbc.driver.OraclDriver</prop>
+						<prop key="username">Kishan</prop>
+						<prop key="password">1234</prop>
+					</props>
+				</constructor-arg>
+				 <constructor-arg>
+					<util:properties location="classpath:resources/propertyFile.properties"></util:properties>
+				</constructor-arg>
+		
+	</bean>
+	<bean id="address1" class="beans.Address">
+	<constructor-arg value="1"/>
+		<constructor-arg value="A"/>
+	</bean>
+	<bean id="address2" class="beans.Address">
+	<constructor-arg value="2"/>
+		<constructor-arg value="B"/>
+	</bean>
+	<bean id="address3" class="beans.Address">
+	<constructor-arg value="3"/>
+		<constructor-arg value="C"/>
+	</bean>
+	
+	<!--  Resolving constructor ambiguity by using type -->
+	
+	<bean id="studentbean3" class="beans.Student">
+	<constructor-arg value="1"/>
+		<constructor-arg value="A"/>
+		<constructor-arg value="2"/>
+	</bean>
+	
+	<bean id="studentbean2" class="beans.Student">
+		<constructor-arg value="3" type="int"/>
+		<constructor-arg value="4" type="int"/>
+			<constructor-arg value="C" type="java.lang.String"/>
+	</bean>
+	
+	<!--  Change order(one to one mapping) by using index -->
+	 <bean id="studentbean4" class="beans.Student">
+		<constructor-arg value="3" index="0"/>
+		<constructor-arg value="C" index="1"/>
+		<constructor-arg ref="address1" index="2"/>
+	</bean>
+	 <bean id="studentbean5" class="beans.Student">
+		<constructor-arg value="3"  index="2"/>
+		<constructor-arg value="C"  index="0"/>
+		<constructor-arg ref="address2" index="1"/>
+	</bean>
+</beans>  

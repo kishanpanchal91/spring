@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+			"http://www.springframework.org/dtd/spring-beans-3.0.dtd">
+<beans>
+
+	<bean id="a" class="beans.A" depends-on="c"/>
+	<bean id="b" class="beans.B" depends-on="a"/>
+	<bean id="c" class="beans.C"/>
+	
+	<!-- Mutual dependency not allowed -->
+	<!-- <bean id="a" class="beans.A" depends-on="c"/>
+	<bean id="b" class="beans.B" />
+	<bean id="c" class="beans.C" depends-on="a"/> -->
+	<!--WARNING: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'c' defined in class path resource [resources/spring.xml]: Circular depends-on relationship between 'c' and 'a'
+Exception in thread "main" org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'c' defined in class path resource [resources/spring.xml]: Circular depends-on relationship between 'c' and 'a'  -->
+	
+	<!-- Cyclic dependency not allowed -->
+	<!-- <bean id="a" class="beans.A" depends-on="c"/>
+	<bean id="b" class="beans.B" depends-on="a"/>
+	<bean id="c" class="beans.C" depends-on="b"/> -->
+	<!--WARNING: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'b' defined in class path resource [resources/spring.xml]: Circular depends-on relationship between 'b' and 'a'
+Exception in thread "main" org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'b' defined in class path resource [resources/spring.xml]: Circular depends-on relationship between 'b' and 'a'-->
+	
+</beans>
