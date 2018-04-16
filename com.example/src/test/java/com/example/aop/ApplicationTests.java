@@ -32,7 +32,7 @@ public class ApplicationTests {
 		BusinessClass businessClassProxy = (BusinessClass) proxy.getObject();
 		businessClassProxy.display();
 	}
-
+   
 	@Test
 	public void XML_AOP_Test() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
