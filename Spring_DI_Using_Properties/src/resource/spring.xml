@@ -1,0 +1,13 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<bean id="t" class="beans.Test">
+<property name="driver">
+<props>
+<prop key="Username">smit</prop>
+<prop key="Password">12344</prop>
+<prop key="IP">1.1.1.1</prop>
+</props>
+</property>
+</bean>
+</beans>

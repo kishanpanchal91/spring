@@ -1,0 +1,17 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="beans.Test.setName" />
+		<property name="arguments">
+			<list>
+				<value>smit</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="t" class="beans.Test">
+
+	</bean>
+
+</beans>
