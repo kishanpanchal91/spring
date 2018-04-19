@@ -1,0 +1,32 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="t" class="beans.Test">
+
+<!--by default string will inject in constructor 
+<constructor-arg value="smit"/> -->
+
+
+<!-- inject below param which constructor have both parameter is string 
+	<constructor-arg value="123"/> 
+	<constructor-arg value="smit"/> -->
+
+
+<!-- called required constructor we need to use type attribute which is 
+	use for choose right constructor -->
+
+
+<constructor-arg value="123" type="int" index="0"/>
+<constructor-arg value="smit" type="java.lang.String" index="2"/>
+<constructor-arg value="smit@smit" type="java.lang.String" index="1"/>
+
+
+<!--false condition : called required constructor we need to use type attribute which is 
+	use for choose right constructor but we need to follow sequence it is mandatory otherwise it will giving error no match found of constructor
+		
+<constructor-arg value="123" type="int" />
+<constructor-arg value="123" type="String" />
+-->
+
+	</bean>
+</beans>

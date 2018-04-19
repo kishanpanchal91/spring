@@ -1,0 +1,19 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="beans.ClassFactory.setName" />
+		<property name="arguments">
+			<list>
+				<value>beans.Audi</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="d" class="beans.ClassFactory" factory-method="getCarInstance"/>
+	
+	<bean id="ft" class="beans.ClassFactory" >
+	<property name="carname" value="beans.Swift"></property>
+	</bean>
+   <bean id="cf"  factory-bean="ft" factory-method="getInstance"></bean>
+</beans>
