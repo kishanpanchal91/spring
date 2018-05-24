@@ -1,0 +1,20 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="con" class="beans.ContactDetails" >
+		<property name="contact" value="123"/>
+	</bean>
+	<bean id="con1" class="beans.ContactDetails">
+		<property name="contact" value="122222"/>
+	</bean>
+	<bean id="t" class="beans.Student">
+		<property name="name" value="SMIT" />
+		<property name="contactDetails">
+		<list>
+		<ref bean="con"/>
+		<ref bean="con1"/>
+		</list>
+		</property>
+
+	</bean>
+</beans>

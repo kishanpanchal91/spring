@@ -1,0 +1,22 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<bean id="t" class="beans.Car" dependency-check="simple" >
+<property name="carName" value="HONDA"/>
+<property name="engine">
+<ref bean="eng"/>
+</property>
+</bean>
+<bean id="eng" class="beans.Engine">
+<property name="modelYear" value="2016" />
+</bean>
+</beans>
+
+
+<!-- dependency-check
+
+none : by default not mandatory
+simple :primitive restriction
+object : secondory type restriction
+all :both primary and secondary is mandatory
+ -->

@@ -1,0 +1,24 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+<!-- ByType it will confuse when two or more same type name found.
+it will resolve using autowired-candidate="false"(by default it is true) it will exclude autowired
+ -->
+ <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<bean id="a" class="beans.Car">
+		<property name="carName" value="Hyundai" />
+	</bean>
+	
+	<bean id="b" class="beans.Engine" >
+	<property name="model" value="2015"/>
+	</bean>
+	<bean id="d" class="beans.Engine" >
+	<property name="model" value="2015"/>
+	</bean>
+	
+	<bean id="c" class="beans.Engine" autowire-candidate="false">
+	<property name="model" value="2015"/>
+	</bean>
+
+</beans>
